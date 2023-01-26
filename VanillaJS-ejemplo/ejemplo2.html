@@ -1,0 +1,64 @@
+
+<body>
+    <div>
+        <button data-id="123"> Me Gusta </button>
+    </div>
+    <div>
+        <button data-id="456"> Me Gusta </button>
+    </div>
+    <div>
+        <button data-id="789"> Me Gusta </button>
+    </div>
+</body>
+
+<style>
+    body {
+        background: #222;
+        padding: 30px;
+    }
+    button {
+        margin: 10px;
+        background: #09f;
+        color: #fff;
+        border: 0;
+        border-radius: 5px;
+        font-size: 20pt;
+        cursor: pointer;
+        padding: 10px;
+    }
+</style>
+
+<script>
+    //Recuperamos el boton
+    const buttons = document.querySelectorAll('button')
+
+    //Recorre cada boton para darle interactividad y funcionalidad
+    buttons.forEach(button => {
+        // Al hacer click en el boton, tenemos que ejecutar una funcion
+    button.addEventListener('click', function(){
+        //Recupero la id del atributo del boton del HTML (data-id)
+        const id = button.getAttribute('data-id')
+
+        //Llamar a un servicio para actualizar si me gusta. Ejemplo llamar a la funcion "toggleLike(id)" si existira :D
+
+        if (button.classList.contains('liked')){
+            //button.classList.remove('liked')  <---- Es lo mismo usar button o this (porque el cambio es en el mismo elemento que estoy trabajando) 
+            this.classList.remove('liked')
+            this.innerText = 'Me Gusta'
+        } else {
+            this.classList.add('liked')
+            this.innerText = 'Quitar Me Gusta'
+        alert(id)
+
+        }
+
+    })
+
+    })
+
+//El poblema de VanillaJS es que ES IMPERACTIVO, y es poco escalable. Es dificil manejar elemntos que esten en distinto sitios de la pagina web.
+//
+</script>
+
+
+
