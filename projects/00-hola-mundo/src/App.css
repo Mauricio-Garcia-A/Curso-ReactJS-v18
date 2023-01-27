@@ -1,0 +1,14 @@
+.conteiner-tw-follow-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20PX;
+}
+
+.tw-true-follow {
+    background: rgb(112, 112, 112);
+    border-radius: 100px;
+    padding: 0px 10px 3px 10px;
+    opacity: 0.5;
+    font-size: 8pt;
+    
+}

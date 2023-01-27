@@ -1,0 +1,72 @@
+.conteiner-followCard {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+.conteiner-followCard header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+
+}
+.conteiner-followCard img {
+    width: 60px;
+    height: 60px;
+    border-radius: 1000px;
+}
+
+
+.conteiner-followCard button {
+    cursor: pointer;
+    margin-left: 16px;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: bold;
+    transition: .3s ease all;
+}
+.conteiner-followCard button:hover {
+    opacity: .6;
+}
+.button-seguir{
+    background: rgb(255, 239, 239);
+    color: rgba(0, 0, 0, 0.832);
+    border: 1px solid rgb(66, 66, 66);
+}
+.button-siguiendo{
+    background: rgba(255, 109, 47, 0.012);
+    color: #fff;
+    border: 1px solid rgba(186, 186, 186, 0.178);
+    width: 130px;
+}
+.button-siguiendo:hover {
+    background: rgba(255, 2, 2, 0.204);
+    color: rgb(238, 0, 0);
+    border: 1px solid rgba(144, 0, 0, 0.767);
+}
+
+.tw-stop-follow {
+    display: none;
+}
+
+.button-siguiendo:hover .tw-stop-follow {
+    display: block;
+}
+.button-siguiendo:hover .tw-text-follow {
+    display: none;
+}
+
+
+.conteiner-followCard section {
+    display: flex;
+    flex-direction: column;
+}
+.conteiner-followCard div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  
+}
