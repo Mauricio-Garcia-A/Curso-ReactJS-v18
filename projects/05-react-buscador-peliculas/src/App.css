@@ -1,0 +1,66 @@
+body {
+    /* max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;*/
+    background: #222 !important;
+
+
+}
+
+
+
+.page-App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /*max-width: 800px;*/
+    color: aliceblue;
+}
+
+main {
+
+    width: 100%;
+    color: aliceblue;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*  Grid responsive  */
+.movies {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+
+}
+
+.movie {
+    background: rgba(245, 245, 220, 0.034);
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.movie h3 {
+    color: rgb(235, 235, 235);
+    margin: 0;
+}
+
+.movie p {
+    color: rgb(96, 96, 96);
+    margin: 5px;
+}
+
+.movie img {
+    border-radius: 10px;
+}

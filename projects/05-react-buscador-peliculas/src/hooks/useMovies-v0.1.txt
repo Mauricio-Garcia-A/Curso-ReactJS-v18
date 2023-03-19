@@ -1,0 +1,32 @@
+import responseMoviesMock from '../mocks/with-results.json'
+import withoutResultsMock from '../mocks/no-results.json'
+import { useState } from 'react'
+
+export default function useMovie ({search}) {
+  const [responseMovies, setResponsiveMovies] = useState([])
+
+  // Mock del servicio API de Peliculas
+  const movies = responseMovies.Search
+
+  const mappedMovies = movies?.map(movie => ({
+    id: movie.imdbID,
+    title: movie.Title,
+    year: movie.Year,
+    image: movie.Poster
+  }))
+
+  const getMovies = () => {
+    if (search) {
+      fetch(`https://www.omdbapi.com/?apikey=ebffc562&s=${search}`)
+        .then(res => res.json())
+        .then(json => {
+          setResponsiveMovies(json)
+        })
+      //setResponsiveMovies(responseMoviesMock)
+    } else {
+      setResponsiveMovies(withoutResultsMock)
+    }
+  }
+
+  return { movies: mappedMovies, getMovies }
+}
