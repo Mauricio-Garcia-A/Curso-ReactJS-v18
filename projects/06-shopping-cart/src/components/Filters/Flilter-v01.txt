@@ -1,0 +1,48 @@
+import { useState } from 'react'
+import './Filters.css'
+
+export default function Filters ({ onChange }) {
+  const [minPrice, setMinPrice] = useState(0)
+
+  const handleChangeMinPrice = (event) => {
+    // Esto fuciona pero esta mal, porque no hay abtraccion entre el componente padre e hijo.
+    // Estamos pasando una funcion de actualizar estado nativa de react a un componente hijo.
+    // El componente hijo deveria saber ni manipular el estado del padre. sino realizar algo mas concreto por contrato.(a la hora de modificar hay que cambiar muchas partes por no respetar el contrato)
+    setMinPrice(event.target.value)
+    onChange(prevState => ({
+      ...prevState,
+      minPrice: event.target.value
+    }))
+  }
+
+  const handleChangeMinCategory = (event) => {
+    onChange(prevState => ({
+      ...prevState,
+      category: event.target.value
+    }))
+  }
+
+  return (
+    <section className='filters'>
+      <div>
+        <label htmlFor='price'>Precio a partir de</label>
+        <input
+          type='range'
+          id='price'
+          min='0'
+          max='1000'
+          onChange={handleChangeMinPrice}
+        />
+        <span>$ {minPrice}</span>
+      </div>
+      <div>
+        <label htmlFor='category'>Categorias</label>
+        <select id='category' onChange={handleChangeMinCategory}>
+          <option value='all'>Todas las Categorias</option>
+          <option value='smartphones'>Celulares</option>
+          <option value='laptops'>Notebooks</option>
+        </select>
+      </div>
+    </section>
+  )
+}

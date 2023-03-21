@@ -1,0 +1,53 @@
+
+export const CART_ACTION_TYPES = {
+  ADD_TO_CART: 'ADD_TO_CART',
+  REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+  CLEAR_CART: 'CLEAR_CART'
+}
+
+// Utilizando useReducer separamos 'la logica de actualizar el estado' en una funcion totalmente separada,
+// --- Para el useReducer creo el ESTADO-INICIAL y el REDUCER ----------
+
+export const cartInitialState = []
+
+export const cartReducer = (state, action) => {
+  const { type: actionType, payload: actionPayload } = action
+  switch (actionType) {
+    case CART_ACTION_TYPES.ADD_TO_CART: {
+      const { id } = actionPayload
+      const productInCartIndex = state.findIndex(item => item.id === id)
+
+      // Si el prpducto esta en el carrito
+      if (productInCartIndex >= 0) {
+        const newState = structuredClone(state)
+        newState[productInCartIndex].quantity += 1
+        return newState
+      }
+      // Si el producto no esta en el carrito
+      return [
+        ...state,
+        {
+          ...actionPayload, // producto
+          quantity: 1
+        }
+      ]
+    }
+
+    case CART_ACTION_TYPES.REMOVE_FROM_CART:{
+      const { id } = actionPayload
+      return state.filter(item => item.id !== id)
+    }
+
+    case CART_ACTION_TYPES.CLEAR_CART: {
+      // return []
+      return cartInitialState
+    }
+  }
+
+  return state
+}
+/*  La ventaja de utilizar useReducer es que separamos 'la logica de actualizar estado', y esto nos facilita muchisimo la posibilidad e hacer test del estado.
+    si utilisamos useState, esta logica esta dentro del componente y hacer test, y comprobar los estados cuesta mucho mas
+    con el useState hay que renderizar el componente para testearlo, mientras que con el useReduce solo hay que llamar a la funcion
+*/
+// --------------------------------------------------------------

@@ -1,0 +1,12 @@
+import Filters from '../Filters/Filters'
+
+export default function Header ({ changeFilters }) {
+  return (
+    <header>
+      <h2>
+        🛒 ShoppingCar
+      </h2>
+      <Filters onChange={changeFilters} />
+    </header>
+  )
+}
