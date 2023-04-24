@@ -1,0 +1,38 @@
+
+import { useState } from 'react'
+import './App.css'
+
+function HomePage () {
+  return (
+    <>
+      <h1>Home</h1>
+      <p>Esta es una pagina de ejemplo para crear un React Router</p>
+      <a href='/about'>Ir a Sobre Nosotros</a>
+    </>
+  )
+}
+
+function AboutPage () {
+  return (
+    <>
+      <h1>Sobre Nosotros</h1>
+      <p>Hola Esto es un Clon de React Router</p>
+      <a href='/'>Ir al Home</a>
+    </>
+  )
+}
+
+function App () {
+  const [currentPath] = useState(window.location.pathname)
+  return (
+    <main>
+      <h1>MAM-ROUTER</h1>
+      <p>MPAs (Multiple Page Application)</p>
+      <p>Se trabaja como si fueran 2 paginas diferentes.</p>
+      {currentPath === '/' && <HomePage />}
+      {currentPath === '/about' && <AboutPage />}
+    </main>
+  )
+}
+
+export default App
