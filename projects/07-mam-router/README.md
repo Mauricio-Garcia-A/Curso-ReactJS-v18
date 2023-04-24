@@ -9,7 +9,7 @@
  Soportar rutas con parámetros
  Componente para hacerlo declarativo
  Lazy Loading de las rutas
- Hacer un i18n con las rutas
+ Hacer un i18n con las rutas (internacionalización ES/EN)
  Testing
  Publicar el paquete en NPM
 
