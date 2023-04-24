@@ -1,0 +1,41 @@
+
+import { useState, useEffect } from 'react'
+import './App.css'
+import { EVENTS } from './consts'
+import HomePage from './pages/home.jsx'
+import AboutPage from './pages/about.jsx'
+
+function App () {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    // Escuchar el evento personalizado (nos subcrivimos al evento)
+    // Creamos funcion para pasarle al evento
+    const onLocationChange = () => {
+      // Setiamos el nuevo paths
+      setCurrentPath(window.location.pathname)
+    }
+    // Lamamos al evento (escuchamos la navegacion hacia adelante)
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
+    // Escuchamos la navegacion hacia atras (boton volver <-)
+    window.addEventListener(EVENTS.POPSATATE, onLocationChange)
+
+    // Removemos el evento
+    return () => {
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
+      window.removeEventListener(EVENTS.POPSATATE, onLocationChange)
+    }
+  }, [])
+
+  return (
+    <main>
+      <h1>MAM-ROUTER</h1>
+      <p>SPAs (Single Page Applications)</p>
+      <p>Se trabaja con 2 paginas pero funciona como una sola.</p>
+      {currentPath === '/' && <HomePage />}
+      {currentPath === '/about' && <AboutPage />}
+    </main>
+  )
+}
+
+export default App

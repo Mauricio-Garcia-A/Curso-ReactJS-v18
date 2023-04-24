@@ -1,0 +1,70 @@
+
+import { useState, useEffect } from 'react'
+import './App.css'
+
+const NAVIGATION_EVENT = 'pushstate'
+function navigate (href) {
+  window.history.pushState({}, '', href)
+
+  // Crear un evento personalizado
+  const navigationEvent = new Event(NAVIGATION_EVENT)
+  // Enviar el evento. para quien lo quiera escuchar
+  window.dispatchEvent(navigationEvent)
+}
+
+function HomePage () {
+  return (
+    <>
+      <h1>Home</h1>
+      <p>Esta es una pagina de ejemplo para crear un React Router</p>
+      <button onClick={() => navigate('/about')}>Ir a Sobre Nosotros</button>
+    </>
+  )
+}
+
+function AboutPage () {
+  return (
+    <>
+      <h1>Sobre Nosotros</h1>
+      <p>Hola, Soy Mauro y Esto es un Clon de React Router</p>
+      <img src='https://pbs.twimg.com/profile_images/537756088049737728/D2UXJUq-_400x400.jpeg' alt='imagen-perfil' />
+      <br />
+      <button onClick={() => navigate('/')} ale>Ir al Home</button>
+    </>
+  )
+}
+
+function App () {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    // Escuchar el evento personalizado (nos subcrivimos al evento)
+    // Creamos funcion para pasarle al evento
+    const onLocationChange = () => {
+      // Setiamos el nuevo paths
+      setCurrentPath(window.location.pathname)
+    }
+    // Lamamos al evento (escuchamos la navegacion hacia adelante)
+    window.addEventListener(NAVIGATION_EVENT, onLocationChange)
+    // Escuchamos la navegacion hacia atras (boton volver <-)
+    window.addEventListener('popstate', onLocationChange)
+
+    // Removemos el evento
+    return () => {
+      window.removeEventListener(NAVIGATION_EVENT, onLocationChange)
+      window.removeEventListener('popstate', onLocationChange)
+    }
+  }, [])
+
+  return (
+    <main>
+      <h1>MAM-ROUTER</h1>
+      <p>SPAs (Single Page Applications)</p>
+      <p>Se trabaja con 2 paginas pero funciona como una sola.</p>
+      {currentPath === '/' && <HomePage />}
+      {currentPath === '/about' && <AboutPage />}
+    </main>
+  )
+}
+
+export default App
