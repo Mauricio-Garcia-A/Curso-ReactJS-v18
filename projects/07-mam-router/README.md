@@ -27,3 +27,19 @@
     EVITA COMPLEJIDAD DE CODIGO (evita escrivir mucho codigo para acceder al componente, sin que de error)
 - Lazy Loading (carga dinamicamente los coponentes a medida que se van utilizando)
     Se le deve indicar a React, envolviendo con la etiqueta <Suspense> ... (compnente no cargado aun) ... </Suspense>
+
+- Tests (intalacion de vitest)
+    pnpm install vitest -D
+    "test": "vitest"  <-- Se agrega esa linea en el package.json
+
+    Para poder testiar componentes de react es necesario renderizarlo, para ello instalamos las herramientas como:
+        - happy-dom (para simular el arbol de elementos, como si fuera un navegador )
+        - @testing-library/react (biblioteca de utilidades )
+
+        pnpm install happy-dom @testing-library/react -D
+
+        en vite.config.js configuramos el entorno donde se ejecutaran los test, con la sigiente linea:
+            test: {
+                environment: 'happy-dom'
+            }
+        istalo extecion VSC (vitest)

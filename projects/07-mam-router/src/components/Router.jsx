@@ -1,13 +1,16 @@
 import { useState, useEffect, Children } from 'react'
 import { EVENTS } from '../consts'
 import { match } from 'path-to-regexp'
+import { getCurrentPath } from '../utils'
 
 export function Router ({ routes = [], defaultComponent: DefaultComponent = () => <h1>ERROR 404</h1>, children }) {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  // const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState(getCurrentPath())
 
   useEffect(() => {
     const onLocationChange = () => {
-      setCurrentPath(window.location.pathname)
+      // setCurrentPath(window.location.pathname)
+      setCurrentPath(getCurrentPath())
     }
 
     window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
@@ -31,7 +34,7 @@ export function Router ({ routes = [], defaultComponent: DefaultComponent = () =
   })
 
   // Rutas que vamos a usar- las que trae por PROPS y las que trae por CHILDRENS
-  const routesToUse = routes.concat(routesFromChildren) // concatenos las rutas por Props con las childrens
+  const routesToUse = routes.concat(routesFromChildren).filter(Boolean) // concatenos las rutas por Props con las childrens
 
   let routeParams = {}
 
